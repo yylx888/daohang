@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理后台 - 三味书屋</title>
+    <link rel="stylesheet" href="admin-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- 头部 -->
+        <header class="admin-header">
+            <div class="header-content">
+                <h1><i class="fas fa-cog"></i> 三味书屋管理后台</h1>
+                <a href="index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i> 返回首页
+                </a>
+            </div>
+        </header>
+
+        <!-- 主要内容 -->
+        <main class="admin-main">
+            <!-- 添加网站表单 -->
+            <section class="admin-section">
+                <h2>添加新网站</h2>
+                <form class="add-form" id="addWebsiteForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="siteName">网站名称 *</label>
+                            <input type="text" id="siteName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="siteUrl">网站链接 *</label>
+                            <input type="url" id="siteUrl" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="siteCategory">分类 *</label>
+                            <select id="siteCategory" required>
+                                <option value="">请选择分类</option>
+                                <option value="movies">影视</option>
+                                <option value="music">音乐</option>
+                                <option value="books">电子书</option>
+                                <option value="tech">IT</option>
+                                <option value="ai">AI</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="siteImage">网站图片链接</label>
+                            <input type="url" id="siteImage" placeholder="留空将自动获取网站Logo">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="siteDescription">网站描述</label>
+                        <textarea id="siteDescription" rows="3" placeholder="简短描述网站内容"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>标签</label>
+                        <div class="tags-input-container">
+                            <div class="preset-tags" id="presetTags">
+                                <!-- 预设标签 -->
+                                <span class="preset-tag" data-tag="免费">免费</span>
+                                <span class="preset-tag" data-tag="高清">高清</span>
+                                <span class="preset-tag" data-tag="无广告">无广告</span>
+                                <span class="preset-tag" data-tag="在线">在线</span>
+                                <span class="preset-tag" data-tag="下载">下载</span>
+                                <span class="preset-tag" data-tag="工具">工具</span>
+                                <span class="preset-tag" data-tag="学习">学习</span>
+                                <span class="preset-tag" data-tag="娱乐">娱乐</span>
+                                <span class="preset-tag" data-tag="开源">开源</span>
+                                <span class="preset-tag" data-tag="API">API</span>
+                                <span class="preset-tag" data-tag="教程">教程</span>
+                                <span class="preset-tag" data-tag="社区">社区</span>
+                            </div>
+                            <div class="selected-tags" id="selectedTags">
+                                <!-- 已选择的标签将显示在这里 -->
+                            </div>
+                            <input type="text" id="customTag" placeholder="输入自定义标签后按回车">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-plus"></i> 添加网站
+                    </button>
+                </form>
+            </section>
+
+            <!-- 网站管理列表 -->
+            <section class="admin-section">
+                <h2>网站管理</h2>
+                <div class="filter-controls">
+                    <select id="categoryFilter">
+                        <option value="">所有分类</option>
+                        <option value="movies">影视</option>
+                        <option value="music">音乐</option>
+                        <option value="books">电子书</option>
+                        <option value="tech">IT</option>
+                        <option value="ai">AI</option>
+                    </select>
+                    <input type="text" id="searchInput" placeholder="搜索网站名称...">
+                </div>
+                
+                <div class="websites-list" id="websitesList">
+                    <!-- 网站列表将通过JavaScript动态生成 -->
+                </div>
+            </section>
+
+            <!-- 统计信息部分 -->
+            <section class="admin-section">
+                <h2>网站统计</h2>
+                <div class="admin-stats-grid">
+                    <div class="admin-stats-card">
+                        <div class="admin-stats-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="admin-stats-info">
+                            <div class="admin-stats-value" id="adminTotalWebsites">0</div>
+                            <div class="admin-stats-label">收录网站</div>
+                        </div>
+                    </div>
+                    <div class="admin-stats-card">
+                        <div class="admin-stats-icon">
+                            <i class="fas fa-mouse-pointer"></i>
+                        </div>
+                        <div class="admin-stats-info">
+                            <div class="admin-stats-value" id="adminTotalVisits">0</div>
+                            <div class="admin-stats-label">总访问量</div>
+                        </div>
+                    </div>
+                    <div class="admin-stats-card">
+                        <div class="admin-stats-icon">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <div class="admin-stats-info">
+                            <div class="admin-stats-value" id="adminTodayVisits">0</div>
+                            <div class="admin-stats-label">今日访问</div>
+                        </div>
+                    </div>
+                    <div class="admin-stats-card">
+                        <div class="admin-stats-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="admin-stats-info">
+                            <div class="admin-stats-value" id="adminPopularCategory">-</div>
+                            <div class="admin-stats-label">热门分类</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="admin-stats-details">
+                    <div class="admin-stats-chart">
+                        <h4>分类统计</h4>
+                        <div id="adminCategoryStats">
+                            <!-- 分类统计将通过JavaScript生成 -->
+                        </div>
+                    </div>
+                    <div class="admin-stats-recent">
+                        <h4>最近访问的网站</h4>
+                        <div id="adminRecentVisits">
+                            <!-- 最近访问将通过JavaScript生成 -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 数据管理 -->
+            <section class="admin-section">
+                <h2>数据管理</h2>
+                <div class="data-controls">
+                    <button class="control-btn" id="exportBtn">
+                        <i class="fas fa-download"></i> 导出数据
+                    </button>
+                    <button class="control-btn" id="importBtn">
+                        <i class="fas fa-upload"></i> 导入数据
+                    </button>
+                    <input type="file" id="importFile" accept=".json" style="display: none;">
+                    <button class="control-btn danger" id="clearBtn">
+                        <i class="fas fa-trash"></i> 清空数据
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 编辑模态框 -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>编辑网站</h3>
+                <button class="close-btn" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form class="edit-form" id="editWebsiteForm">
+                <!-- 编辑表单内容与添加表单类似 -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editSiteName">网站名称 *</label>
+                        <input type="text" id="editSiteName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editSiteUrl">网站链接 *</label>
+                        <input type="url" id="editSiteUrl" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editSiteCategory">分类 *</label>
+                        <select id="editSiteCategory" required>
+                            <option value="movies">影视</option>
+                            <option value="music">音乐</option>
+                            <option value="books">电子书</option>
+                            <option value="tech">IT</option>
+                            <option value="ai">AI</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editSiteImage">网站图片链接</label>
+                        <input type="url" id="editSiteImage">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="editSiteDescription">网站描述</label>
+                    <textarea id="editSiteDescription" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>标签</label>
+                    <div class="tags-input-container">
+                        <div class="preset-tags" id="editPresetTags">
+                            <span class="preset-tag" data-tag="免费">免费</span>
+                            <span class="preset-tag" data-tag="高清">高清</span>
+                            <span class="preset-tag" data-tag="无广告">无广告</span>
+                            <span class="preset-tag" data-tag="在线">在线</span>
+                            <span class="preset-tag" data-tag="下载">下载</span>
+                            <span class="preset-tag" data-tag="工具">工具</span>
+                            <span class="preset-tag" data-tag="学习">学习</span>
+                            <span class="preset-tag" data-tag="娱乐">娱乐</span>
+                            <span class="preset-tag" data-tag="开源">开源</span>
+                            <span class="preset-tag" data-tag="API">API</span>
+                            <span class="preset-tag" data-tag="教程">教程</span>
+                            <span class="preset-tag" data-tag="社区">社区</span>
+                        </div>
+                        <div class="selected-tags" id="editSelectedTags">
+                            <!-- 已选择的标签将显示在这里 -->
+                        </div>
+                        <input type="text" id="editCustomTag" placeholder="输入自定义标签后按回车">
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="cancel-btn" id="cancelEdit">取消</button>
+                    <button type="submit" class="submit-btn">保存修改</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="admin-script.js"></script>
+</body>
+</html>

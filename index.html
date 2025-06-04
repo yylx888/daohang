@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三味书屋 - 精品导航站</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- 侧边导航栏 -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>三味书屋</h2>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#home" class="nav-link active" data-section="home"><i class="fas fa-home"></i> 主页</a></li>
+            <li><a href="#movies" class="nav-link" data-section="movies"><i class="fas fa-film"></i> 影视</a></li>
+            <li><a href="#music" class="nav-link" data-section="music"><i class="fas fa-music"></i> 音乐</a></li>
+            <li><a href="#books" class="nav-link" data-section="books"><i class="fas fa-book"></i> 电子书</a></li>
+            <li><a href="#tech" class="nav-link" data-section="tech"><i class="fas fa-code"></i> IT</a></li>
+            <li><a href="#ai" class="nav-link" data-section="ai"><i class="fas fa-robot"></i> AI</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <a href="admin.html" class="admin-link">
+                <i class="fas fa-cog"></i> 管理后台
+            </a>
+        </div>
+    </nav>
+
+    <!-- 主内容区域 -->
+    <main class="main-content" id="mainContent">
+        <!-- 主页部分 -->
+        <section id="home" class="content-section active">
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">欢迎来到三味书屋</h1>
+                    <p class="hero-subtitle">精心收集的优质网站导航，让您的网络之旅更加精彩</p>
+                    <div class="hero-description">
+                        <p>这里汇聚了影视、音乐、电子书、IT技术和AI工具等各个领域的精品网站。</p>
+                        <p>每一个链接都经过精心筛选，为您提供最优质的网络资源。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 标签筛选区域 -->
+            <div class="tags-section">
+                <h3>热门标签</h3>
+                <div class="tags-container" id="tagsContainer">
+                    <!-- 标签将通过JavaScript动态生成 -->
+                </div>
+            </div>
+
+            <!-- 筛选结果展示区域 -->
+            <div class="filtered-results" id="filteredResults" style="display: none;">
+                <h3 id="filterTitle">筛选结果</h3>
+                <div class="websites-grid" id="filteredGrid">
+                    <!-- 筛选结果将在这里显示 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 影视部分 -->
+        <section id="movies" class="content-section">
+            <div class="section-header">
+                <h2><i class="fas fa-film"></i> 影视资源</h2>
+                <p>精选优质影视网站，享受视觉盛宴</p>
+            </div>
+            <div class="websites-grid" id="moviesGrid">
+                <!-- 网站卡片将通过JavaScript动态生成 -->
+            </div>
+        </section>
+
+        <!-- 音乐部分 -->
+        <section id="music" class="content-section">
+            <div class="section-header">
+                <h2><i class="fas fa-music"></i> 音乐天地</h2>
+                <p>发现美妙音乐，聆听世界之声</p>
+            </div>
+            <div class="websites-grid" id="musicGrid">
+                <!-- 网站卡片将通过JavaScript动态生成 -->
+            </div>
+        </section>
+
+        <!-- 电子书部分 -->
+        <section id="books" class="content-section">
+            <div class="section-header">
+                <h2><i class="fas fa-book"></i> 电子书库</h2>
+                <p>知识的海洋，阅读的乐园</p>
+            </div>
+            <div class="websites-grid" id="booksGrid">
+                <!-- 网站卡片将通过JavaScript动态生成 -->
+            </div>
+        </section>
+
+        <!-- IT技术部分 -->
+        <section id="tech" class="content-section">
+            <div class="section-header">
+                <h2><i class="fas fa-code"></i> IT技术</h2>
+                <p>技术前沿，开发者的天堂</p>
+            </div>
+            <div class="websites-grid" id="techGrid">
+                <!-- 网站卡片将通过JavaScript动态生成 -->
+            </div>
+        </section>
+
+        <!-- AI工具部分 -->
+        <section id="ai" class="content-section">
+            <div class="section-header">
+                <h2><i class="fas fa-robot"></i> AI工具</h2>
+                <p>人工智能时代，智能工具集合</p>
+            </div>
+            <div class="websites-grid" id="aiGrid">
+                <!-- 网站卡片将通过JavaScript动态生成 -->
+            </div>
+        </section>
+
+        <!-- 统计信息浮动按钮 -->
+        <div class="stats-fab" id="statsFab">
+            <i class="fas fa-chart-bar"></i>
+        </div>
+
+        <!-- 统计信息模态框 -->
+        <div class="stats-modal" id="statsModal">
+            <div class="stats-modal-content">
+                <div class="stats-header">
+                    <h3><i class="fas fa-chart-bar"></i> 网站统计</h3>
+                    <button class="close-btn" id="closeStatsModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="stats-content" id="statsContent">
+                    <!-- 统计内容将通过JavaScript动态生成 -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 分享模态框 -->
+        <div class="share-modal" id="shareModal">
+            <div class="share-modal-content">
+                <div class="share-header">
+                    <h3><i class="fas fa-share-alt"></i> 分享网站</h3>
+                    <button class="close-btn" id="closeShareModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="share-content">
+                    <div class="share-website-info" id="shareWebsiteInfo">
+                        <!-- 分享的网站信息 -->
+                    </div>
+                    <div class="share-options">
+                        <button class="share-btn" data-platform="wechat">
+                            <i class="fab fa-weixin"></i>
+                            微信
+                        </button>
+                        <button class="share-btn" data-platform="weibo">
+                            <i class="fab fa-weibo"></i>
+                            微博
+                        </button>
+                        <button class="share-btn" data-platform="qq">
+                            <i class="fab fa-qq"></i>
+                            QQ
+                        </button>
+                        <button class="share-btn" data-platform="twitter">
+                            <i class="fab fa-twitter"></i>
+                            Twitter
+                        </button>
+                        <button class="share-btn" data-platform="facebook">
+                            <i class="fab fa-facebook"></i>
+                            Facebook
+                        </button>
+                        <button class="share-btn" data-platform="copy">
+                            <i class="fas fa-copy"></i>
+                            复制链接
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 移动端遮罩层 -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
