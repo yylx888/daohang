@@ -80,6 +80,13 @@ const defaultWebsites = {
       tags: ["高清", "付费", "在线"],
       image: "",
     },
+    {
+      name: "X站",
+      url: "https://lsp1566.cc",
+      description: "X站—影视站点",
+      tags: ["高清", "免费", "在线"],
+      image: "",
+    },
   ],
   music: [
     {
